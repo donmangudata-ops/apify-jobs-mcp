@@ -11,6 +11,7 @@ on:
         options:
           - server.json
           - tech-stack/server.json
+          - jobs-mcp-server/server.json
       dry_run:
         description: "Validate only, do not publish"
         required: true
@@ -21,7 +22,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write   # GitHub OIDC login to the registry, no secret needed
+      id-token: write # GitHub OIDC login to the registry, no secret needed
       contents: read
     steps:
       - uses: actions/checkout@v5
