@@ -1,0 +1,42 @@
+name: Publish to MCP Registry
+
+# Runs only when the owner clicks "Run workflow" on the Actions tab.
+on:
+  workflow_dispatch:
+    inputs:
+      entry:
+        description: "Which server.json to publish"
+        required: true
+        type: choice
+        options:
+          - server.json
+          - tech-stack/server.json
+      dry_run:
+        description: "Validate only, do not publish"
+        required: true
+        type: boolean
+        default: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write   # GitHub OIDC login to the registry, no secret needed
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install mcp-publisher
+        run: |
+          curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+
+      - name: Validate
+        run: ./mcp-publisher validate "${{ inputs.entry }}"
+
+      - name: Log in with GitHub OIDC
+        if: ${{ !inputs.dry_run }}
+        run: ./mcp-publisher login github-oidc
+
+      - name: Publish
+        if: ${{ !inputs.dry_run }}
+        run: ./mcp-publisher publish "${{ inputs.entry }}"
