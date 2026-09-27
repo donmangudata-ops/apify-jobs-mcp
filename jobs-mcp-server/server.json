@@ -1,0 +1,26 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.donmangudata-ops/jobs-mcp-server",
+  "title": "Jobs MCP Server",
+  "description": "Read-only tools: open jobs at the companies you name, and a live search of current tech jobs",
+  "version": "1.0.0",
+  "websiteUrl": "https://donmangudata-ops.github.io/mcp",
+  "repository": {
+    "url": "https://github.com/donmangudata-ops/apify-jobs-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://conserving-celerytop--jobs-mcp-server.apify.actor/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer followed by your own Apify API token. Calls are billed to your Apify account.",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
