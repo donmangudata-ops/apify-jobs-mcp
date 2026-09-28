@@ -1,5 +1,7 @@
 # Career page jobs and website tech stacks for AI agents (Apify MCP)
 
+[![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/donmangudata-ops/apify-jobs-mcp)
+
 Connect Claude, Cursor, ChatGPT or any MCP client to live job data from company career pages, and to a website tech stack detector. Nothing to install. Both run on Apify's hosted MCP server at `mcp.apify.com`, pinned to my Apify Actors.
 
 I built and maintain these Actors. They are paid per event, and every call is billed to your own Apify account at the prices below. There are no affiliate or referral parameters in any link here.
